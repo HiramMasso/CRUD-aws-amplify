@@ -1,0 +1,101 @@
+.editButton {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.editButton svg {
+  width: 44%;
+}
+
+.editButton:hover {
+  background-color: rgb(0, 67, 253);
+  overflow: visible;
+}
+
+.editButton:active {
+  transform: scale(0.98);
+}
+
+.saveButton {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.saveButton svg {
+  width: 50%;
+}
+
+.saveButton:hover {
+  background-color: rgb(69, 95, 168);
+  overflow: visible;
+}
+
+.saveButton:active {
+  transform: scale(0.98);
+}
+
+.svg path {
+  transition: all 0.2s;
+}
+
+.editButton:hover .svg path,
+.saveButton:hover .svg path {
+  fill: #fff;
+}
+
+.svg path {
+  fill: rgba(250, 249, 249, 0.532);
+}
+
+.table input[type="text"],
+.table input[type="number"] {
+  border-radius: 20px;
+  box-shadow: inset 1px 2.5px 5px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
+  width: 100%;
+  padding: 8px;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  font-size: 26px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.table input[type="text"]:focus,
+.table input[type="number"]:focus {
+  border-radius: 20px;
+  background-color: white;
+  transform: scale(1.02);
+  box-shadow: 1.5px 1.5px 10px #969696, -1.5px -1.5px 10px #ffffff;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

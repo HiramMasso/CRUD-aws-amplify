@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+AR:wght@100..400&family=Playwrite+BE+VLG:wght@100..400&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Playwrite+PE:wght@100..400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ruda:wght@900&display=swap");
+
+.inputForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input1 {
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  padding: 1em;
+  background-color: rgba(250, 249, 249, 0.399);
+  box-shadow: inset 1px 2.5px 5px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  align-items: center;
+  margin: 10px 0px 40px 0px;
+  width: 75%;
+}
+
+.input1:focus {
+  background-color: white;
+  transform: scale(1.02);
+  box-shadow: 4px 4px 35px #969696, -4px -4px 35px #ffffff;
+}
+
+.addButton {
+  padding: 14.5px 50px;
+  border: 0;
+  border-radius: 15px;
+  background-color: #2ba8fb;
+  color: #ffffff;
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+.addButton:hover {
+  background-color: #6fc5ff;
+  box-shadow: 0 0 20px #6fc5ff50;
+  transform: scale(1.1);
+}
+
+.addButton:active {
+  background-color: #3d94cf;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}

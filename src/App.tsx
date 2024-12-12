@@ -1,40 +1,80 @@
-import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
+import React, { useState, useEffect } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import "./App.css";
+import Users from "./components/Users/Users.tsx";
+import Add from "./components/Add/Add";
+import Update from "./components/Update/Update";
+import Navbar from "./components/Navbar/Navbar";
+import { User, NewUser } from "../types.ts";
 
-const client = generateClient<Schema>();
+const App: React.FC = () => {
+    const [users, setUsers] = useState<User[]>([]);
+    const [searchResults, setSearchResults] = useState<User[]>([]);
 
-function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+    useEffect(() => {
+        fetch("http://localhost:5000/users")
+            .then(response => response.json())
+            .then(data => setUsers(data))
+            .catch(error => console.error("Error fetching users:", error));
+    }, []);
 
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
+    const addUser = async (user: NewUser) => {
+        try {
+            const response = await fetch("http://localhost:5000/create-user", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+            });
+            const newUser: User = await response.json();
+            setUsers((prevUsers) => [...prevUsers, newUser]);
+            window.location.reload();
+        } catch (error) {
+            console.error("Error adding user:", error);
+        }
+    };
 
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
+    const updateUser = (index: number, updatedUser: User) => {
+        const updatedUsers = users.map((user, idx) =>
+            idx === index ? updatedUser : user
+        );
+        setUsers(updatedUsers);
+    };
 
-  return (
-    <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
-      </div>
-    </main>
-  );
-}
+    const handleSearch = (term: string) => {
+        if (term !== "") {
+            const results = users.filter((user) =>
+                user.name && user.name.toLowerCase().includes(term.toLowerCase())
+            );
+            setSearchResults(results);
+        } else {
+            setSearchResults([]);
+        }
+    };
+
+    return (
+        <div className="App-header">
+            <div className="background"></div>
+            <Router>
+                <Navbar handleSearch={handleSearch} />
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<Users searchResults={searchResults} />}
+                    />
+                    <Route
+                        path="/Add"
+                        element={<Add addUser={addUser} />}
+                    />
+                    <Route
+                        path="/Update"
+                        element={<Update users={users} searchResults={searchResults} onSave={updateUser} />}
+                    />
+                </Routes>
+            </Router>
+        </div>
+    );
+};
 
 export default App;

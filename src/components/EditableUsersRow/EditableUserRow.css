@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+AR:wght@100..400&family=Playwrite+BE+VLG:wght@100..400&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Playwrite+PE:wght@100..400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ruda:wght@900&display=swap");
+
+.editButton,
+.saveButton {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.editButton svg,
+.saveButton svg {
+  width: 44%;
+}
+
+.editButton:hover,
+.saveButton:hover {
+  overflow: visible;
+}
+
+.bin path {
+  transition: all 0.2s;
+}
+
+.editButton:hover .bin path {
+  fill: #fff;
+}
+
+.saveButton:hover .bin path {
+  fill: #fff;
+}
+
+.editButton:active,
+.saveButton:active {
+  transform: scale(0.98);
+}
+
+.bin path {
+  fill: rgba(250, 249, 249, 0.532);
+}
+
+.editButton:hover {
+  transform: scale(1.1);
+  background-color: rgb(0, 67, 253);
+}
+
+.saveButton:hover {
+  transform: scale(1.1);
+  background-color: rgb(69, 95, 168);
+}
+
+.table input[type="text"],
+.table input[type="number"],
+.table input[type="email"] {
+  border-radius: 20px;
+  box-shadow: inset 1px 2.5px 5px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
+  width: 100%;
+  padding: 8px;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  font-size: 26px;
+  font-family: "Roboto", sans-serif;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.table input[type="text"]:focus,
+.table input[type="number"]:focus,
+.table input[type="email"]:focus {
+  border-radius: 20px;
+  background-color: white;
+  transform: scale(1.02);
+  box-shadow: 1.5px 1.5px 10px #969696, -1.5px -1.5px 10px #ffffff;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@keyframes blink {
+  0%, 100% {
+    color: #0c0b0b;
+  }
+  50% {
+    color: #ff0000;
+  }
+}
+
+.error,
+.textError{
+  animation: blink 1.5s infinite;
+}
