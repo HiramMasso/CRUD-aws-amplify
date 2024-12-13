@@ -15,7 +15,7 @@ const Users: React.FC<UsersProps> = ({ searchResults }) => {
     const [editedUser, setEditedUser] = useState<User>({} as User);
 
     useEffect(() => {
-        fetch("http://localhost:5000/users")
+        fetch("http://ec2-50-16-13-125.compute-1.amazonaws.com:5000/users")
             .then(response => response.json())
             .then(data => setUsers(data))
             .catch(error => console.error("Error fetching users:", error));
@@ -32,7 +32,7 @@ const Users: React.FC<UsersProps> = ({ searchResults }) => {
 
     const handleSaveClick = (index: number) => {
         const userId = users[index].id;
-        fetch(`http://localhost:5000/update-user/${userId}`, {
+        fetch(`http://ec2-50-16-13-125.compute-1.amazonaws.com:5000/update-user/${userId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const Users: React.FC<UsersProps> = ({ searchResults }) => {
     };    
 
     const deleteUser = (id: number) => {
-        fetch(`http://localhost:5000/delete-user/${id}`, {
+        fetch(`http://ec2-50-16-13-125.compute-1.amazonaws.com:5000/delete-user/${id}`, {
             method: "DELETE",
         })
             .then(response => {

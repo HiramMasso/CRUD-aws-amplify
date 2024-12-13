@@ -32,7 +32,7 @@ const Update: React.FC<UpdateProps> = ({ users, searchResults }) => {
 
     const handleSaveClick = (index: number) => {
         const userId = localUsers[index].id;
-        fetch(`http://localhost:5000/update-user/${userId}`, {
+        fetch(`http://ec2-50-16-13-125.compute-1.amazonaws.com:5000/update-user/${userId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
