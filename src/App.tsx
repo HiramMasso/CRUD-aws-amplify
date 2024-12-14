@@ -12,7 +12,7 @@ const App: React.FC = () => {
     const [searchResults, setSearchResults] = useState<User[]>([]);
 
     useEffect(() => {
-        fetch("http://ec2-50-16-13-125.compute-1.amazonaws.com:5000/users")
+        fetch("https://50.16.13.125.nip.io/users")
             .then(response => response.json())
             .then(data => setUsers(data))
             .catch(error => console.error("Error fetching users:", error));
@@ -20,7 +20,7 @@ const App: React.FC = () => {
 
     const addUser = async (user: NewUser) => {
         try {
-            const response = await fetch("http://ec2-50-16-13-125.compute-1.amazonaws.com:5000/create-user", {
+            const response = await fetch("https://50.16.13.125.nip.io/create-user", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
